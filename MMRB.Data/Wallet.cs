@@ -10,7 +10,7 @@ namespace MMRB.Data
 {
     public class Wallet
     {
-        [Key]
+       
         public int WalletId { get; set; }
 
         [Required]

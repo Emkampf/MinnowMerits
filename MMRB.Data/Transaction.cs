@@ -16,5 +16,18 @@ namespace MMRB.Data
         public DateTimeOffset DateOfTransaction { get; set; }
         [ForeignKey(nameof(Event))]
         public int eventId { get; set; }
+/*        [ForeignKey(nameof(Wallet))]
+        public int FirstName { get; set; }
+        [ForeignKey(nameof(Wallet))]
+        public int LastName { get; set; }*/
+
+        public enum TransactionType  
+        {
+            [Display(Name = "Withdraw")]
+            WD,
+            [Display(Name = "Deposit")]
+            D,
+        }
+
     }
 }

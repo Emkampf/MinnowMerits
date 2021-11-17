@@ -7,5 +7,8 @@ namespace MMRB.Models
 {
     public class WriteUpEdit
     {
+        public int WriteUpId { get; set; }
+
+        public int WriteUps { get; set; }
     }
 }

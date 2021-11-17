@@ -7,5 +7,12 @@ namespace MMRB.Models
 {
     public class WalletEdit
     {
+        public int WalletId { get; set; }
+
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        public DateTime BirthDate { get; set; }
     }
 }

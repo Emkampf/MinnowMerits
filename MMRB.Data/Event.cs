@@ -12,9 +12,10 @@ namespace MMRB.Data
         [Key]
         public int EventId { get; set; }
         [Required]
+        public string Title { get; set; }
+        [Required]
         public string Description { get; set; }
         [Required]
         public decimal Price { get; set; }
-
     }
 }
