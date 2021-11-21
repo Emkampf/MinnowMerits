@@ -10,12 +10,12 @@ namespace MMRB.Data
 {
     public class Wallet
     {
-       
+       [Key]
         public int WalletId { get; set; }
 
         [Required]
-        public string FirstName
-        {
+        public string FirstName { get; set; }
+/*        {
             get => _firstName;
             set
             {
@@ -24,11 +24,11 @@ namespace MMRB.Data
                 else
                     _firstName = value;
             }
-        }
+        }*/
 
         [Required]
-        public string LastName
-        {
+        public string LastName { get; set; }
+/*        {
             get => _lastName;
             set
             {
@@ -37,8 +37,8 @@ namespace MMRB.Data
                 else
                     _lastName = value;
             }
-        }
-        [Required]
+        }*/
+        
         public DateTime BirthDate { get; set; }
 
         [ForeignKey(nameof(Transaction))]

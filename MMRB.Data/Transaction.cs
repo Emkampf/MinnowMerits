@@ -13,7 +13,9 @@ namespace MMRB.Data
         [Key]
         public int TransactionId { get; set; }
         [Required]
-        public DateTimeOffset DateOfTransaction { get; set; }
+        public DateTimeOffset CreatedUtc { get; set; }
+
+        public DateTimeOffset? ModifiedUtc { get; set; }
         [ForeignKey(nameof(Event))]
         public int eventId { get; set; }
 /*        [ForeignKey(nameof(Wallet))]
