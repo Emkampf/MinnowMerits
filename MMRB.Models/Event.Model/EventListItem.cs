@@ -8,6 +8,8 @@ namespace MMRB.Models
 {
     public class EventListItem
     {
+        [Display(Name = "Event Number")]
+        public int EventId { get; set; }
         [Display(Name = "Title")]
         public string Title { get; set; }
 

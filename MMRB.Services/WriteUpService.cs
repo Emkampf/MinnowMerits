@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MMRB.Services
 {
-    class WriteUpService
+    public class WriteUpService
     {
     }
 }

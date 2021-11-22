@@ -10,6 +10,6 @@ namespace MMRB.Models
         public int TransactionId { get; set; }
         public DateTimeOffset DateOfTransaction { get; set; }
 
-        public int eventId { get; set; }
+        public int EventId { get; set; }
     }
 }

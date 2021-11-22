@@ -16,8 +16,13 @@ namespace MMRB.Data
         public DateTimeOffset CreatedUtc { get; set; }
 
         public DateTimeOffset? ModifiedUtc { get; set; }
+
         [ForeignKey(nameof(Event))]
-        public int eventId { get; set; }
+        public int? EventId { get; set; }
+
+        public virtual Event Event { get; set; }
+
+
 /*        [ForeignKey(nameof(Wallet))]
         public int FirstName { get; set; }
         [ForeignKey(nameof(Wallet))]

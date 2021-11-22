@@ -14,7 +14,7 @@ namespace MMRB.Models
         [Display(Name = "Date Of Transaction")]
         public DateTimeOffset DateOfTransaction { get; set; }
         [Display(Name = "Event Number")]
-        public int eventId { get; set; }
+        public int EventId { get; set; }
 
     }
 }

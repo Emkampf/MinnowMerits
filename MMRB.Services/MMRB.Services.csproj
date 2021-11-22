@@ -64,5 +64,15 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MMRB.Data\MMRB.Data.csproj">
+      <Project>{3696b58a-7b04-4c4e-b6fe-a84631d07e8a}</Project>
+      <Name>MMRB.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MMRB.Models\MMRB.Models.csproj">
+      <Project>{35d5b03b-0e56-4486-8991-4becf719676c}</Project>
+      <Name>MMRB.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

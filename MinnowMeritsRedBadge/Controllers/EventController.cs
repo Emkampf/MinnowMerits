@@ -1,4 +1,5 @@
 ﻿using MMRB.Models;
+using MMRB.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,9 @@ namespace MinnowMeritsRedBadge.Controllers
         // GET: Event
         public ActionResult Index()
         {
-            var model = new EventListItem[0];
+            var service = new EventService();
+            var model = service.GetEvents();
+
             return View(model);
         }
 
@@ -35,8 +38,14 @@ namespace MinnowMeritsRedBadge.Controllers
         {
             if (ModelState.IsValid)
             {
+                 return View(model);
             }
-            return View(model);
+
+            var service = new EventService();
+
+            service.CreateEvent(model);
+
+            return RedirectToAction("Index");
         }
 
         // GET: Event/Edit/5

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MMRB.Services
 {
-    class WalletService
+   public class WalletService
     {
     }
 }

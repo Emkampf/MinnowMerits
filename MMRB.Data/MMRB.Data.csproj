@@ -56,6 +56,15 @@
   <ItemGroup>
     <Compile Include="Event.cs" />
     <Compile Include="IdentityModels.cs" />
+    <Compile Include="Migrations\202111212159059_Updatin.cs" />
+    <Compile Include="Migrations\202111212159059_Updatin.Designer.cs">
+      <DependentUpon>202111212159059_Updatin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111220056452_Event Sevie.cs" />
+    <Compile Include="Migrations\202111220056452_Event Sevie.Designer.cs">
+      <DependentUpon>202111220056452_Event Sevie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Transaction.cs" />
     <Compile Include="Wallet.cs" />
@@ -64,6 +73,14 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202111212159059_Updatin.resx">
+      <DependentUpon>202111212159059_Updatin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111220056452_Event Sevie.resx">
+      <DependentUpon>202111220056452_Event Sevie.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
