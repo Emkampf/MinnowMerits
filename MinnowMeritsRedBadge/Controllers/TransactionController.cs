@@ -1,4 +1,5 @@
 ﻿using MMRB.Models;
+using MMRB.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,15 +13,17 @@ namespace MinnowMeritsRedBadge.Controllers
         // GET: Transaction
         public ActionResult Index()
         {
-            var model = new TransactionListItem[0];
+            var service = new TransactionService();
+            var model = service.GetTransactions();
+
             return View(model);
         }
 
-/*        // GET: Transaction/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }*/
+        /*        // GET: Transaction/Details/5
+                public ActionResult Details(int id)
+                {
+                    return View();
+                }*/
 
         // GET: Transaction/Create
         public ActionResult Create()
@@ -35,10 +38,16 @@ namespace MinnowMeritsRedBadge.Controllers
         {
             if (ModelState.IsValid)
             {
+                return View(model);
             }
-            return View(model);
+
+            var service = new TransactionService();
+
+            service.CreateTransaction(model);
+
+            return RedirectToAction("Index");
         }
-    
+
 
         // GET: Transaction/Edit/5
         public ActionResult Edit(int id)

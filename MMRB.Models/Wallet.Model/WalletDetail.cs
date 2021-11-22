@@ -17,7 +17,7 @@ namespace MMRB.Models
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
-        [Display(Name = "Birth Date")]
-        public DateTime BirthDate { get; set; }
+        [Display(Name = "Birthday")]
+        public DateTime BirthDay { get; set; }
     }
 }

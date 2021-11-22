@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MMRB.Models.Helper;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -13,8 +14,11 @@ namespace MMRB.Data
         [Key]
         public int TransactionId { get; set; }
         [Required]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTimeOffset CreatedUtc { get; set; }
-
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTimeOffset? ModifiedUtc { get; set; }
 
         [ForeignKey(nameof(Event))]
@@ -22,19 +26,13 @@ namespace MMRB.Data
 
         public virtual Event Event { get; set; }
 
+        public TransactionType TypeTransaction { get; set; }
 
-/*        [ForeignKey(nameof(Wallet))]
-        public int FirstName { get; set; }
-        [ForeignKey(nameof(Wallet))]
-        public int LastName { get; set; }*/
+        /*        [ForeignKey(nameof(Wallet))]
+                public int FirstName { get; set; }
+                [ForeignKey(nameof(Wallet))]
+                public int LastName { get; set; }*/
 
-        public enum TransactionType  
-        {
-            [Display(Name = "Withdraw")]
-            WD,
-            [Display(Name = "Deposit")]
-            D,
-        }
 
     }
 }

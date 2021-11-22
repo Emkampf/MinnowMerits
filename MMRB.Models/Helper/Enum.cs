@@ -5,12 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MMRB.Data
+namespace MMRB.Models.Helper
 {
-    public class WriteUp
+    public enum TransactionType
     {
-        [Key]
-        public int WriteUpId { get; set; }
-        public int WriteUps { get; set; }
+        [Display(Name = "Withdraw")]
+        W,
+        [Display(Name = "Deposit")]
+        D,
     }
 }

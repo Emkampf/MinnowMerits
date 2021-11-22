@@ -58,6 +58,7 @@
     <Compile Include="Event.Model\EventDetail.cs" />
     <Compile Include="Event.Model\EventEdit.cs" />
     <Compile Include="Event.Model\EventListItem.cs" />
+    <Compile Include="Helper\Enum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Transaction.Model\TransactionCreate.cs" />
     <Compile Include="Transaction.Model\TransactionDetail.cs" />

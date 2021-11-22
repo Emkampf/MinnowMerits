@@ -1,4 +1,6 @@
-﻿using MMRB.Models;
+﻿using Microsoft.AspNet.Identity;
+using MMRB.Models;
+using MMRB.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,15 +14,18 @@ namespace MinnowMeritsRedBadge.Controllers
         // GET: Wallet
         public ActionResult Index()
         {
-            var model = new WalletListItem[0];
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new WalletService(userId);
+            var model = service.GetWallet();
+
             return View(model);
         }
-/*
-        // GET: Wallet/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }*/
+        /*
+                // GET: Wallet/Details/5
+                public ActionResult Details(int id)
+                {
+                    return View();
+                }*/
 
         // GET: Wallet/Create
         public ActionResult Create()
@@ -32,11 +37,18 @@ namespace MinnowMeritsRedBadge.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(WalletCreate model)
-        {
+        {   
             if (ModelState.IsValid)
             {
+                return View(model);
             }
-            return View(model);
+
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new WalletService(userId);
+
+            service.CreateWallet(model);
+
+            return RedirectToAction("Index");
         }
 
         // GET: Wallet/Edit/5

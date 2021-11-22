@@ -82,5 +82,11 @@
       <DependentUpon>202111220056452_Event Sevie.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MMRB.Models\MMRB.Models.csproj">
+      <Project>{35D5B03B-0E56-4486-8991-4BECF719676C}</Project>
+      <Name>MMRB.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
