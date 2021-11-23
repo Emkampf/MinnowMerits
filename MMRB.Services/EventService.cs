@@ -66,5 +66,22 @@ namespace MMRB.Services
                     }; 
             }
         }
+
+        public bool UpdateEvent(EventEdit model)
+        {
+            using(var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Events
+                        .Single(e => e.EventId == model.EventId);
+
+                entity.Title = model.Title;
+                entity.Description = model.Description;
+                entity.Price = model.Price;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
 }

@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace MinnowMeritsRedBadge.Controllers
 {
+    [Authorize]
     public class WalletController : Controller
     {
         // GET: Wallet
@@ -49,6 +50,46 @@ namespace MinnowMeritsRedBadge.Controllers
 
             return View(model);
         }
+        // GET: Wallet/Edit/5
+        public ActionResult Edit(int id)
+        {
+            var service = CreateWalletService();
+            var detail = service.GetWalletById(id);
+            var model =
+                new WalletEdit
+                {
+                    WalletId = detail.WalletId,
+                    FirstName = detail.FirstName,
+                    LastName = detail.LastName,
+                    BirthDay = detail.BirthDay
+                };
+
+            return View(model);
+        }
+
+        // POST: Wallet/Edit/5
+        [HttpPost]
+        public ActionResult Edit(int id, WalletEdit model)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            if (model.WalletId != id)
+            {
+                ModelState.AddModelError("", "Id Mismatch");
+                return View(model);
+            }
+
+            var service = CreateWalletService();
+
+            if (service.UpdateWallet(model))
+            {
+                TempData["SaveResult"] = "Your wallet was updated.";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "Sorry, your wallet could not be updated.");
+            return View(model);
+        }
 
         private WalletService CreateWalletService()
         {
@@ -57,27 +98,6 @@ namespace MinnowMeritsRedBadge.Controllers
             return service;
         }
 
-        // GET: Wallet/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Wallet/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
 
         // GET: Wallet/Delete/5
         public ActionResult Delete(int id)

@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace MinnowMeritsRedBadge.Controllers
 {
+    [Authorize]
     public class EventController : Controller
     {
         // GET: Event
@@ -52,33 +53,52 @@ namespace MinnowMeritsRedBadge.Controllers
             return View(model);
         }
 
+        // GET: Event/Edit/5
+        public ActionResult Edit(int id)
+        {
+            var service = CreateEventService();
+            var detail = service.GetEventById(id);
+            var model =
+                new EventEdit
+                {
+                    EventId = detail.EventId,
+                    Title = detail.Title,
+                    Description = detail.Description,
+                    Price = detail.Price
+                };
+
+            return View(model);
+        }
+
+        // POST: Event/Edit/5
+        [HttpPost]
+        public ActionResult Edit(int id, EventEdit model)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            if (model.EventId != id)
+            {
+                ModelState.AddModelError("", "Id Mismatch");
+                return View(model);
+            }
+
+            var service = CreateEventService();
+
+            if (service.UpdateEvent(model))
+            {
+                TempData["SaveResult"] = "Your event was updated.";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "Sorry, your event could not be updated.");
+            return View(model);
+        }
 
         private static EventService CreateEventService()
         {
             return new EventService();
         }
 
-        // GET: Event/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Event/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
 
         // GET: Event/Delete/5
         public ActionResult Delete(int id)

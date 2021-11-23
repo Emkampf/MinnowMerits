@@ -60,5 +60,20 @@ namespace MMRB.Services
                     };
             }
         }
+
+        public bool UpdateWriteUp(WriteUpEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .WriteUps
+                        .Single(e => e.WriteUpId == model.WriteUpId);
+
+                entity.WriteUps = model.WriteUps;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
 }

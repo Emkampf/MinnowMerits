@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace MinnowMeritsRedBadge.Controllers
 {
+    [Authorize]
     public class WriteUpController : Controller
     {
         // GET: WriteUp
@@ -50,32 +51,50 @@ namespace MinnowMeritsRedBadge.Controllers
             return View(model);
         }
 
+        // GET: WriteUp/Edit/5
+        public ActionResult Edit(int id)
+        {
+            var service = CreateWriteUpService();
+            var detail = service.GetWriteUpById(id);
+            var model =
+                new WriteUpEdit
+                {
+                    WriteUpId = detail.WriteUpId,
+                    WriteUps = detail.WriteUps
+                };
+            return View(model);
+        }
+
+        // POST: WriteUp/Edit/5
+        [HttpPost]
+        public ActionResult Edit(int id, WriteUpEdit model)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            if(model.WriteUpId != id)
+            {
+                ModelState.AddModelError("", "Id Mismatch");
+                return View(model);
+            }
+
+            var service = CreateWriteUpService();
+
+            if (service.UpdateWriteUp(model))
+            {
+                TempData["SaveResult"] = "Your write-up was updated.";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "Sorry, your write-up could not be updated.");
+            return View(model);
+        }
+
         private static WriteUpService CreateWriteUpService()
         {
             return new WriteUpService();
         }
 
-        // GET: WriteUp/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
 
-        // POST: WriteUp/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
 
         // GET: WriteUp/Delete/5
         public ActionResult Delete(int id)

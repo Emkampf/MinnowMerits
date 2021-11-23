@@ -64,6 +64,10 @@
     <Compile Include="Migrations\202111220056452_Event Sevie.Designer.cs">
       <DependentUpon>202111220056452_Event Sevie.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111231808404_Detail Views.cs" />
+    <Compile Include="Migrations\202111231808404_Detail Views.Designer.cs">
+      <DependentUpon>202111231808404_Detail Views.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Transaction.cs" />
@@ -80,6 +84,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111220056452_Event Sevie.resx">
       <DependentUpon>202111220056452_Event Sevie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111231808404_Detail Views.resx">
+      <DependentUpon>202111231808404_Detail Views.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

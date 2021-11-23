@@ -52,6 +52,7 @@ namespace MMRB.Services
                             LastName = e.LastName,
                             BirthDay = e.BirthDay
                         });
+                return query.ToArray();
             }
         }
 
@@ -72,5 +73,22 @@ namespace MMRB.Services
                     };
             }
         }
-   }
+
+        public bool UpdateWallet(WalletEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Wallets
+                        .Single(e => e.WalletId == model.WalletId);
+
+                entity.FirstName = model.FirstName;
+                entity.LastName = model.LastName;
+                entity.BirthDay = model.BirthDay;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+    }
 }

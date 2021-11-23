@@ -65,5 +65,21 @@ namespace MMRB.Services
                     };
             }
         }
+
+        public bool UpdateTransaction(TransactionEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Transactions
+                        .Single(e => e.TransactionId == model.TransactionId);
+
+                entity.TypeTransaction = (TransactionType)model.TypeTransaction;
+                entity.ModifiedUtc = DateTimeOffset.UtcNow;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
 }
