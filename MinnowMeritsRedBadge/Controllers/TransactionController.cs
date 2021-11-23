@@ -71,11 +71,11 @@ namespace MinnowMeritsRedBadge.Controllers
 
         // POST: Transaction/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, TransactionEdit model)
+        public ActionResult Edit(int transactionId, TransactionEdit model)
         {
             if (!ModelState.IsValid) return View(model);
 
-            if (model.TransactionId != id)
+            if (model.TransactionId != transactionId)
             {
                 ModelState.AddModelError("", "Id Mismatch");
                 return View(model);
@@ -93,33 +93,33 @@ namespace MinnowMeritsRedBadge.Controllers
             return View(model);
         }
 
-        private static TransactionService CreateTransactionService()
-        {
-            return new TransactionService();
-        }
-
-
-
         // GET: Transaction/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int transactionId)
         {
-            return View();
+            var svc = CreateTransactionService();
+            var model = svc.GetTransactionById(transactionId);
+
+            return View(model);
         }
 
         // POST: Transaction/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteTransaction(int transactionId)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            var service = CreateTransactionService();
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            service.DeleteTransaction(transactionId);
+
+            TempData["SaveResult"] = "Your transaction was deleted";
+
+            return RedirectToAction("Index");
+        }
+
+        private static TransactionService CreateTransactionService()
+        {
+            return new TransactionService();
         }
     }
 }

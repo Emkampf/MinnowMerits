@@ -69,11 +69,11 @@ namespace MinnowMeritsRedBadge.Controllers
 
         // POST: Wallet/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, WalletEdit model)
+        public ActionResult Edit(int walletId, WalletEdit model)
         {
             if (!ModelState.IsValid) return View(model);
 
-            if (model.WalletId != id)
+            if (model.WalletId != walletId)
             {
                 ModelState.AddModelError("", "Id Mismatch");
                 return View(model);
@@ -91,34 +91,37 @@ namespace MinnowMeritsRedBadge.Controllers
             return View(model);
         }
 
+
+
+        // GET: Wallet/Delete/5
+        public ActionResult Delete(int walletId)
+        {
+            var svc = CreateWalletService();
+            var model = svc.GetWalletById(walletId);
+
+            return View(model);
+        }
+
+        // POST: Wallet/Delete/5
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteWallet(int walletId)
+        {
+            var service = CreateWalletService();
+
+            service.DeleteWallet(walletId);
+
+            TempData["SaveResult"] = "Your wallet was deleted";
+
+            return RedirectToAction("Index");
+        }
+
         private WalletService CreateWalletService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
             var service = new WalletService(userId);
             return service;
-        }
-
-
-        // GET: Wallet/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Wallet/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }

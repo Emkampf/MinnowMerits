@@ -45,19 +45,19 @@ namespace MinnowMeritsRedBadge.Controllers
         }
 
         // GET: Event/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int eventId)
         {
             var svc = CreateEventService();
-            var model = svc.GetEventById(id);
+            var model = svc.GetEventById(eventId);
 
             return View(model);
         }
 
         // GET: Event/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int eventId)
         {
             var service = CreateEventService();
-            var detail = service.GetEventById(id);
+            var detail = service.GetEventById(eventId);
             var model =
                 new EventEdit
                 {
@@ -72,11 +72,11 @@ namespace MinnowMeritsRedBadge.Controllers
 
         // POST: Event/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, EventEdit model)
+        public ActionResult Edit(int eventId, EventEdit model)
         {
             if (!ModelState.IsValid) return View(model);
 
-            if (model.EventId != id)
+            if (model.EventId != eventId)
             {
                 ModelState.AddModelError("", "Id Mismatch");
                 return View(model);
@@ -94,32 +94,35 @@ namespace MinnowMeritsRedBadge.Controllers
             return View(model);
         }
 
+        // GET: Event/Delete/5
+        public ActionResult Delete(int eventId)
+        {
+            var svc = CreateEventService();
+            var model = svc.GetEventById(eventId);
+
+            return View(model);
+        }
+
+        // POST: Event/Delete/5
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteEvent(int eventId)
+        {
+            var service = CreateEventService();
+
+            service.DeleteEvent(eventId);
+
+            TempData["SaveResult"] = "Your event was deleted";
+
+            return RedirectToAction("Index");
+        }
+
         private static EventService CreateEventService()
         {
             return new EventService();
         }
 
 
-        // GET: Event/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Event/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

@@ -90,5 +90,21 @@ namespace MMRB.Services
                 return ctx.SaveChanges() == 1;
             }
         }
+
+        public bool DeleteWallet(int walletId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+
+                        .Wallets
+                        .Single(e => e.WalletId == walletId);
+
+                ctx.Wallets.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
 }

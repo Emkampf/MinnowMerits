@@ -75,5 +75,21 @@ namespace MMRB.Services
                 return ctx.SaveChanges() == 1;
             }
         }
+
+        public bool DeleteWriteUp(int writeUpId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+
+                        .WriteUps
+                        .Single(e => e.WriteUpId == writeUpId);
+
+                ctx.WriteUps.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
 }

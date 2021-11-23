@@ -67,11 +67,11 @@ namespace MinnowMeritsRedBadge.Controllers
 
         // POST: WriteUp/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, WriteUpEdit model)
+        public ActionResult Edit(int writeUpId, WriteUpEdit model)
         {
             if (!ModelState.IsValid) return View(model);
 
-            if(model.WriteUpId != id)
+            if(model.WriteUpId != writeUpId)
             {
                 ModelState.AddModelError("", "Id Mismatch");
                 return View(model);
@@ -89,33 +89,32 @@ namespace MinnowMeritsRedBadge.Controllers
             return View(model);
         }
 
+        // GET: WriteUp/Delete/5
+        public ActionResult Delete(int writeUpId)
+        {
+            var svc = CreateWriteUpService();
+            var model = svc.GetWriteUpById(writeUpId);
+
+            return View(model);
+        }
+        // POST: WriteUp/Delete/5
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteWriteUp(int writeUpId)
+        {
+            var service = CreateWriteUpService();
+
+            service.DeleteWriteUp(writeUpId);
+
+            TempData["SaveResult"] = "Your write-up was deleted";
+
+            return RedirectToAction("Index");
+        }
+
         private static WriteUpService CreateWriteUpService()
         {
             return new WriteUpService();
-        }
-
-
-
-        // GET: WriteUp/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: WriteUp/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }

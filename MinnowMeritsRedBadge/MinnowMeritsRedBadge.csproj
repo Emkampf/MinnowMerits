@@ -253,6 +253,10 @@
     <Content Include="Views\Transaction\Edit.cshtml" />
     <Content Include="Views\Wallet\Edit.cshtml" />
     <Content Include="Views\WriteUp\Edit.cshtml" />
+    <Content Include="Views\WriteUp\Delete.cshtml" />
+    <Content Include="Views\Wallet\Delete.cshtml" />
+    <Content Include="Views\Transaction\Delete.cshtml" />
+    <Content Include="Views\Event\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

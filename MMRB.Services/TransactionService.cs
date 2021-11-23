@@ -81,5 +81,21 @@ namespace MMRB.Services
                 return ctx.SaveChanges() == 1;
             }
         }
+
+        public bool DeleteTransaction(int transactionId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+
+                        .Transactions
+                        .Single(e => e.TransactionId == transactionId);
+
+                ctx.Transactions.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
 }
