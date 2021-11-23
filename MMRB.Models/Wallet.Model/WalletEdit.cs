@@ -13,6 +13,6 @@ namespace MMRB.Models
 
         public string LastName { get; set; }
 
-        public DateTime BirthDay { get; set; }
+        public int BirthDay { get; set; }
     }
 }

@@ -48,5 +48,22 @@ namespace MMRB.Services
 
             }
         }
+
+        public TransactionDetail GetTransactionById(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx
+                    .Transactions
+                    .Single(e => e.TransactionId == id);
+                return
+                    new TransactionDetail
+                    {
+                        TransactionId = entity.TransactionId,
+                        TypeTransaction = (TransactionType)entity.TypeTransaction,
+                        CreatedUtc = entity.CreatedUtc
+                    };
+            }
+        }
     }
 }

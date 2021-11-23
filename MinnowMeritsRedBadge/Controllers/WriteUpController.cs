@@ -18,12 +18,6 @@ namespace MinnowMeritsRedBadge.Controllers
 
             return View(model);
         }
-        /*
-                // GET: WriteUp/Details/5
-                public ActionResult Details(int id)
-                {
-                    return View();
-                }*/
 
         // GET: WriteUp/Create
         public ActionResult Create()
@@ -36,16 +30,29 @@ namespace MinnowMeritsRedBadge.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(WriteUpCreate model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid) return View(model);
+            var service = CreateWriteUpService();
+            if (service.CreateWriteUp(model))
             {
-                return View(model);
-            }
+                TempData["SaveResult"] = "Write-Up Created!";
+                return RedirectToAction("Index");
+            };
+            ModelState.AddModelError("", "Write-Up could not be created.");
+            return View(model);
 
-            var service = new WriteUpService();
+        }
+        
+        public ActionResult Details(int id)
+        {
+            var svc = CreateWriteUpService();
+            var model = svc.GetWriteUpById(id);
 
-            service.CreateWriteUp(model);
+            return View(model);
+        }
 
-            return RedirectToAction("Index");
+        private static WriteUpService CreateWriteUpService()
+        {
+            return new WriteUpService();
         }
 
         // GET: WriteUp/Edit/5

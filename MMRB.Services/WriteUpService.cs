@@ -43,5 +43,22 @@ namespace MMRB.Services
 
             }
         }
+
+        public WriteUpDetail GetWriteUpById(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx
+                    .WriteUps
+                    .Single(e => e.WriteUpId == id);
+                return
+                    new WriteUpDetail
+                    {
+                        WriteUpId = entity.WriteUpId,
+                        WriteUps = entity.WriteUps
+
+                    };
+            }
+        }
     }
 }

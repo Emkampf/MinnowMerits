@@ -27,7 +27,7 @@ namespace MMRB.Services
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     BirthDay = model.BirthDay
-                });
+                };
             using (var ctx = new ApplicationDbContext())
             {
                 ctx.Wallets.Add(entity);
@@ -54,5 +54,23 @@ namespace MMRB.Services
                         });
             }
         }
-    }
+
+        public WalletDetail GetWalletById(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx
+                    .Wallets
+                    .Single(e => e.WalletId == id && e.ChildId == _userId);
+                return
+                    new WalletDetail
+                    {
+                        WalletId = entity.WalletId,
+                        FirstName = entity.FirstName,
+                        LastName = entity.LastName,
+                        BirthDay = entity.BirthDay
+                    };
+            }
+        }
+   }
 }

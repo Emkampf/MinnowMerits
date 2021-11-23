@@ -19,11 +19,6 @@ namespace MinnowMeritsRedBadge.Controllers
             return View(model);
         }
 
-/*        // GET: Event/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }*/
 
         // GET: Event/Create
         public ActionResult Create()
@@ -36,16 +31,31 @@ namespace MinnowMeritsRedBadge.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(EventCreate model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid) return View(model);
+            var service = CreateEventService();
+            if (service.CreateEvent(model))
             {
-                 return View(model);
-            }
+                TempData["SaveResult"] = "Event Created!";
+                return RedirectToAction("Index");
+            };
+            ModelState.AddModelError("", "Event could not be created.");
+            return View(model);
 
-            var service = new EventService();
+        }
 
-            service.CreateEvent(model);
+        // GET: Event/Details/5
+        public ActionResult Details(int id)
+        {
+            var svc = CreateEventService();
+            var model = svc.GetEventById(id);
 
-            return RedirectToAction("Index");
+            return View(model);
+        }
+
+
+        private static EventService CreateEventService()
+        {
+            return new EventService();
         }
 
         // GET: Event/Edit/5

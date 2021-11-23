@@ -18,6 +18,6 @@ namespace MMRB.Models
         public string LastName { get; set; }
 
         [Display(Name = "Birthday")]
-        public DateTime BirthDay { get; set; }
+        public int BirthDay { get; set; }
     }
 }

@@ -48,5 +48,23 @@ namespace MMRB.Services
                     
             }
         }
+        public EventDetail GetEventById(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx
+                    .Events
+                    .Single(e => e.EventId == id);
+                return
+                    new EventDetail
+                    {
+                        EventId = entity.EventId,
+                        Title = entity.Title,
+                        Description = entity.Description,
+                        Price = entity.Price
+                    
+                    }; 
+            }
+        }
     }
 }

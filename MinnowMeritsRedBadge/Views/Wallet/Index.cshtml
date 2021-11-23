@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MMRB.Models.WalletListItem>
+﻿@model      IEnumerable<MMRB.Models.WalletListItem>
 
 @{
     ViewBag.Title = "Index";
@@ -9,6 +9,16 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+@if (TempData.ContainsKey("SaveResult"))
+{
+<div class="alert alert-success fade in" role"alert">
+    <button type="button" class="close" data-dismiss="alert">
+        <span>&times;</span>
+    </button>
+    @TempData["SaveResult"]
+</div>
+}
 <table class="table">
     <tr>
         <th>
@@ -21,13 +31,15 @@
             @Html.DisplayNameFor(model => model.LastName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BirthDate)
+            @Html.DisplayNameFor(model => model.BirthDay)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
+  @foreach (var item in Model)
+
+
+  {<tr>
         <td>
             @Html.DisplayFor(modelItem => item.WalletId)
         </td>
@@ -38,7 +50,7 @@
             @Html.DisplayFor(modelItem => item.LastName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.BirthDate)
+            @Html.DisplayFor(modelItem => item.BirthDay)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
@@ -46,6 +58,7 @@
             @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
         </td>
     </tr>
+   
+  
 }
-
-</table>
+    </table>

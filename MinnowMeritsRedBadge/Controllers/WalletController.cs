@@ -16,16 +16,10 @@ namespace MinnowMeritsRedBadge.Controllers
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
             var service = new WalletService(userId);
-            var model = service.GetWallet();
+            var model = service.GetWallets();
 
             return View(model);
         }
-        /*
-                // GET: Wallet/Details/5
-                public ActionResult Details(int id)
-                {
-                    return View();
-                }*/
 
         // GET: Wallet/Create
         public ActionResult Create()
@@ -37,18 +31,30 @@ namespace MinnowMeritsRedBadge.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(WalletCreate model)
-        {   
-            if (ModelState.IsValid)
+        {
+            if (!ModelState.IsValid) return View(model);
+            var service = CreateWalletService();
+            if (service.CreateWallet(model))
             {
+                return RedirectToAction("Index");
+            };
+            ModelState.AddModelError("", "Wallet could not be created.");
                 return View(model);
-            }
 
+        }
+        public ActionResult Details(int id)
+        {
+            var svc = CreateWalletService();
+            var model = svc.GetWalletById(id);
+
+            return View(model);
+        }
+
+        private WalletService CreateWalletService()
+        {
             var userId = Guid.Parse(User.Identity.GetUserId());
             var service = new WalletService(userId);
-
-            service.CreateWallet(model);
-
-            return RedirectToAction("Index");
+            return service;
         }
 
         // GET: Wallet/Edit/5

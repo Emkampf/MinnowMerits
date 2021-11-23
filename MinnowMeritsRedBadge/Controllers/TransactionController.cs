@@ -19,11 +19,6 @@ namespace MinnowMeritsRedBadge.Controllers
             return View(model);
         }
 
-        /*        // GET: Transaction/Details/5
-                public ActionResult Details(int id)
-                {
-                    return View();
-                }*/
 
         // GET: Transaction/Create
         public ActionResult Create()
@@ -36,16 +31,29 @@ namespace MinnowMeritsRedBadge.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(TransactionCreate model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid) return View(model);
+            var service = CreateTransactionService();
+            if (service.CreateTransaction(model))
             {
-                return View(model);
-            }
+                TempData["SaveResult"] = "Transaction Created!";
+                return RedirectToAction("Index");
+            };
+            ModelState.AddModelError("", "Transaction could not be created.");
+            return View(model);
 
-            var service = new TransactionService();
+        }
+        // GET: Transaction/Details/5
+        public ActionResult Details(int id)
+        {
+            var svc = CreateTransactionService();
+            var model = svc.GetTransactionById(id);
 
-            service.CreateTransaction(model);
+            return View(model);
+        }
 
-            return RedirectToAction("Index");
+        private static TransactionService CreateTransactionService()
+        {
+            return new TransactionService();
         }
 
 

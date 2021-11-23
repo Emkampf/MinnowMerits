@@ -246,6 +246,10 @@
     <Content Include="Views\WriteUp\Create.cshtml" />
     <Content Include="Views\Wallet\Create.cshtml" />
     <Content Include="Views\Transaction\Create.cshtml" />
+    <Content Include="Views\Wallet\Details.cshtml" />
+    <Content Include="Views\Event\Details.cshtml" />
+    <Content Include="Views\Transaction\Details.cshtml" />
+    <Content Include="Views\WriteUp\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
