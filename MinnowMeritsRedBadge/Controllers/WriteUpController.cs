@@ -90,10 +90,11 @@ namespace MinnowMeritsRedBadge.Controllers
         }
 
         // GET: WriteUp/Delete/5
-        public ActionResult Delete(int writeUpId)
+        [ActionName("Delete")]
+        public ActionResult Delete(int id)
         {
             var svc = CreateWriteUpService();
-            var model = svc.GetWriteUpById(writeUpId);
+            var model = svc.GetWriteUpById(id);
 
             return View(model);
         }
@@ -101,11 +102,11 @@ namespace MinnowMeritsRedBadge.Controllers
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteWriteUp(int writeUpId)
+        public ActionResult DeleteWriteUp(int id)
         {
             var service = CreateWriteUpService();
 
-            service.DeleteWriteUp(writeUpId);
+            service.DeleteWriteUp(id);
 
             TempData["SaveResult"] = "Your write-up was deleted";
 

@@ -95,10 +95,11 @@ namespace MinnowMeritsRedBadge.Controllers
         }
 
         // GET: Event/Delete/5
-        public ActionResult Delete(int eventId)
+        [ActionName("Delete")]
+        public ActionResult Delete(int id)
         {
             var svc = CreateEventService();
-            var model = svc.GetEventById(eventId);
+            var model = svc.GetEventById(id);
 
             return View(model);
         }
@@ -107,11 +108,11 @@ namespace MinnowMeritsRedBadge.Controllers
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteEvent(int eventId)
+        public ActionResult DeletePost(int id)
         {
             var service = CreateEventService();
 
-            service.DeleteEvent(eventId);
+            service.DeleteEvent(id);
 
             TempData["SaveResult"] = "Your event was deleted";
 

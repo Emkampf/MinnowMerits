@@ -94,10 +94,11 @@ namespace MinnowMeritsRedBadge.Controllers
 
 
         // GET: Wallet/Delete/5
-        public ActionResult Delete(int walletId)
+        [ActionName("Delete")]
+        public ActionResult Delete(int id)
         {
             var svc = CreateWalletService();
-            var model = svc.GetWalletById(walletId);
+            var model = svc.GetWalletById(id);
 
             return View(model);
         }
@@ -106,11 +107,11 @@ namespace MinnowMeritsRedBadge.Controllers
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteWallet(int walletId)
+        public ActionResult DeletePost(int id)
         {
             var service = CreateWalletService();
 
-            service.DeleteWallet(walletId);
+            service.DeleteWallet(id);
 
             TempData["SaveResult"] = "Your wallet was deleted";
 

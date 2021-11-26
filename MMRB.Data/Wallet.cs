@@ -17,31 +17,9 @@ namespace MMRB.Data
 
         [Required]
         public string FirstName { get; set; }
-        /*        {
-                    get => _firstName;
-                    set
-                    {
-                        if (value.Length < 1 || value.Any(x => !char.IsLetter(x)))
-                            throw new FormatException("Must be atleast 4 characters long.");
-                        else
-                            _firstName = value;
-                    }
-                }*/
 
         [Required]
         public string LastName { get; set; }
-        /*        {
-                    get => _lastName;
-                    set
-                    {
-                        if (value.Length < 1 || value.Any(x => !char.IsLetter(x)))
-                            throw new FormatException("Must be atleast 4 characters long.");
-                        else
-                            _lastName = value;
-                    }
-                }*/
-
-
 
         [ForeignKey(nameof(Transaction))]
         public int? TransactionId { get; set; }

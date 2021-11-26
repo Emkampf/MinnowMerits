@@ -94,6 +94,7 @@ namespace MinnowMeritsRedBadge.Controllers
         }
 
         // GET: Transaction/Delete/5
+        [ActionName("Delete")]
         public ActionResult Delete(int transactionId)
         {
             var svc = CreateTransactionService();
@@ -106,11 +107,11 @@ namespace MinnowMeritsRedBadge.Controllers
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteTransaction(int transactionId)
+        public ActionResult DeletePost(int id)
         {
             var service = CreateTransactionService();
 
-            service.DeleteTransaction(transactionId);
+            service.DeleteTransaction(id);
 
             TempData["SaveResult"] = "Your transaction was deleted";
 
