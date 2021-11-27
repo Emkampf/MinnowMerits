@@ -22,8 +22,10 @@ namespace MMRB.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTimeOffset? ModifiedUtc { get; set; }
 
-        [Display(Name = "Event Number")]
+        //[Display(Name = "Event Number")]
         public int EventId { get; set; }
+        [Display(Name = "Event Number")]
+        public string EventDescription { get; set; }
         public TransactionType TypeTransaction { get; set; }
 
     }

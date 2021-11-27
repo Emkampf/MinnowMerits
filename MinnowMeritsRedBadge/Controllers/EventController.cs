@@ -118,7 +118,7 @@ namespace MinnowMeritsRedBadge.Controllers
             return RedirectToAction("Index");
         }
 
-        private static EventService CreateEventService()
+        public static EventService CreateEventService()
         {
             return new EventService();
         }

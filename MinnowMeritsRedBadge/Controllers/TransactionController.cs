@@ -24,6 +24,8 @@ namespace MinnowMeritsRedBadge.Controllers
         // GET: Transaction/Create
         public ActionResult Create()
         {
+            var eventService = EventController.CreateEventService();
+            ViewData["EventOptions"] = eventService.GetEvents();
             return View();
         }
 

@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Add")
 </p>
 @if (TempData.ContainsKey("SaveResult"))
 {
@@ -22,6 +22,7 @@
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.WriteUpId)
+
         </th>
         <th>
             @Html.DisplayNameFor(model => model.WriteUps)
