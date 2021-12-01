@@ -21,7 +21,6 @@ namespace MMRB.Data
         [Required]
         public string LastName { get; set; }
 
-
         [ForeignKey(nameof(Transaction))]
         public int? TransactionId { get; set; }
         public virtual Transaction Transaction { get; set; }
