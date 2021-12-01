@@ -25,8 +25,11 @@ namespace MinnowMeritsRedBadge.Controllers
         public ActionResult Create()
         {
             var eventService = EventController.CreateEventService();
+            var walletService = WalletController.CreateWalletService();
             ViewData["EventOptions"] = eventService.GetEvents();
+            ViewData["WalletOptions"] = walletService.GetWallets();
             return View();
+
         }
 
         // POST: Transaction/Create
@@ -36,15 +39,21 @@ namespace MinnowMeritsRedBadge.Controllers
         {
             if (!ModelState.IsValid) return View(model);
             var service = CreateTransactionService();
+            var eventService = EventController.CreateEventService();
+            ViewData["EventOptions"] = eventService.GetEvents();
             if (service.CreateTransaction(model))
             {
                 TempData["SaveResult"] = "Transaction Created!";
                 return RedirectToAction("Index");
             };
+
+            // look up event $
+            // add event $ to wallet running balance 
             ModelState.AddModelError("", "Transaction could not be created.");
             return View(model);
 
         }
+
         // GET: Transaction/Details/5
         public ActionResult Details(int id)
         {
@@ -64,7 +73,6 @@ namespace MinnowMeritsRedBadge.Controllers
                 {
                     TransactionId = detail.TransactionId,
                     ModifiedUtc = detail.ModifiedUtc,
-                    TypeTransaction = detail.TypeTransaction,
                     EventId = detail.EventId
                 };
 
@@ -96,10 +104,10 @@ namespace MinnowMeritsRedBadge.Controllers
         }
 
         // GET: Transaction/Delete/5
-        public ActionResult Delete(int transactionId)
+        public ActionResult Delete(int id)
         {
             var svc = CreateTransactionService();
-            var model = svc.GetTransactionById(transactionId);
+            var model = svc.GetTransactionById(id);
 
             return View(model);
         }
@@ -108,11 +116,11 @@ namespace MinnowMeritsRedBadge.Controllers
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteTransaction(int transactionId)
+        public ActionResult DeleteTransaction(int id)
         {
             var service = CreateTransactionService();
 
-            service.DeleteTransaction(transactionId);
+            service.DeleteTransaction(id);
 
             TempData["SaveResult"] = "Your transaction was deleted";
 

@@ -10,20 +10,20 @@ namespace MMRB.Services
 {
    public class WalletService
     {
-        private readonly Guid _userId;
+/*        private readonly Guid _userId;
 
         public WalletService(Guid userId)
         {
             _userId = userId;
-        }
+        }*/
 
         public bool CreateWallet(WalletCreate model)
         {
             var entity = 
                 new Wallet()
                 {
-                    ChildId = _userId,
-                    WalletId = model.WalletId,
+ /*                   ChildId = _userId,*/
+/*                    WalletId = model.WalletId,*/
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     BirthDay = model.BirthDay
@@ -39,10 +39,22 @@ namespace MMRB.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
+                var writeUpList =
+                    ctx
+                    .WriteUps
+                    .Select(
+                        e =>
+                        new WriteUpListItem
+                        {
+                            WriteUpId = e.WriteUpId,
+                            WriteUps = e.WriteUps,
+
+                        });
+                
                 var query =
                     ctx
                     .Wallets
-                    .Where(e => e.ChildId == _userId)
+/*                    .Where(e => e.ChildId == _userId)*/
                     .Select(
                         e =>
                         new WalletListItem
@@ -51,8 +63,14 @@ namespace MMRB.Services
                             FirstName = e.FirstName,
                             LastName = e.LastName,
                             BirthDay = e.BirthDay
+
                         });
-                return query.ToArray();
+                var wallets = query.ToArray();
+                foreach (WalletListItem wall in wallets)
+                {
+                    wall.WriteUps = writeUpList.Where(x => x.WriteUpId == wall.WriteUps).Select(x => x.WriteUps).FirstOrDefault();
+                }
+                return wallets;
             }
         }
 
@@ -62,14 +80,16 @@ namespace MMRB.Services
             {
                 var entity = ctx
                     .Wallets
-                    .Single(e => e.WalletId == id && e.ChildId == _userId);
+                    .Single(e => e.WalletId == id/* && e.ChildId == _userId*/);
                 return
                     new WalletDetail
                     {
                         WalletId = entity.WalletId,
                         FirstName = entity.FirstName,
                         LastName = entity.LastName,
-                        BirthDay = entity.BirthDay
+                        BirthDay = entity.BirthDay,
+                        WriteUps = entity.WriteUp == null ? -1 : (int)entity.WalletId
+
                     };
             }
         }

@@ -1,13 +1,13 @@
 ﻿@model MMRB.Models.TransactionDetail
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Transactions";
 }
 
 <h2>Details</h2>
 
 <div>
-    <h4>TransactionDetail</h4>
+
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -26,13 +26,13 @@
             @Html.DisplayFor(model => model.CreatedUtc)
         </dd>
 
-        <dt>
+@*        <dt>
             @Html.DisplayNameFor(model => model.ModifiedUtc)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.ModifiedUtc)
-        </dd>
+        </dd>*@
 
         <dt>
             @Html.DisplayNameFor(model => model.EventId)

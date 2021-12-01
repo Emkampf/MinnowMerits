@@ -15,8 +15,8 @@ namespace MinnowMeritsRedBadge.Controllers
         // GET: Wallet
         public ActionResult Index()
         {
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            var service = new WalletService(userId);
+/*            var userId = Guid.Parse(User.Identity.GetUserId());*/
+            var service = new WalletService();
             var model = service.GetWallets();
 
             return View(model);
@@ -25,6 +25,7 @@ namespace MinnowMeritsRedBadge.Controllers
         // GET: Wallet/Create
         public ActionResult Create()
         {
+
             return View();
         }
 
@@ -47,6 +48,8 @@ namespace MinnowMeritsRedBadge.Controllers
         {
             var svc = CreateWalletService();
             var model = svc.GetWalletById(id);
+            var writeUpService = WriteUpController.CreateWriteUpService();
+            ViewData["WriteUpResults"] = writeUpService.GetWriteUp();
 
             return View(model);
         }
@@ -61,8 +64,16 @@ namespace MinnowMeritsRedBadge.Controllers
                     WalletId = detail.WalletId,
                     FirstName = detail.FirstName,
                     LastName = detail.LastName,
-                    BirthDay = detail.BirthDay
+                    BirthDay = detail.BirthDay,
                 };
+
+/*            var writeUpService = WriteUpController.CreateWriteUpService();
+
+            new WriteUpEdit
+            {
+*//*                WriteUpId = detail.WriteUpId,*//*
+                WriteUps = detail.WriteUps
+            };*/
 
             return View(model);
         }
@@ -94,10 +105,10 @@ namespace MinnowMeritsRedBadge.Controllers
 
 
         // GET: Wallet/Delete/5
-        public ActionResult Delete(int walletId)
+        public ActionResult Delete(int id)
         {
             var svc = CreateWalletService();
-            var model = svc.GetWalletById(walletId);
+            var model = svc.GetWalletById(id);
 
             return View(model);
         }
@@ -106,21 +117,21 @@ namespace MinnowMeritsRedBadge.Controllers
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteWallet(int walletId)
+        public ActionResult DeleteWallet(int id)
         {
             var service = CreateWalletService();
 
-            service.DeleteWallet(walletId);
+            service.DeleteWallet(id);
 
             TempData["SaveResult"] = "Your wallet was deleted";
 
             return RedirectToAction("Index");
         }
 
-        private WalletService CreateWalletService()
+        public static WalletService CreateWalletService()
         {
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            var service = new WalletService(userId);
+/*            var userId = Guid.Parse(User.Identity.GetUserId());*/
+            var service = new WalletService();
             return service;
         }
     }

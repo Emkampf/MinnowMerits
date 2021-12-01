@@ -15,7 +15,8 @@ namespace MMRB.Services
             var entity = new WriteUp()
             {
                 WriteUpId = model.WriteUpId,
-                WriteUps = model.WriteUps
+                WriteUps = model.WriteUps,
+                WalletId = model.WalletId
             };
 
             using (var ctx = new ApplicationDbContext())
@@ -37,7 +38,7 @@ namespace MMRB.Services
                         new WriteUpListItem
                         {
                             WriteUpId = e.WriteUpId,
-                            WriteUps = e.WriteUps
+                            WriteUps = e.WriteUps,
                         });
                 return query.ToArray();
 

@@ -1,12 +1,21 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 100px;
     padding-bottom: 20px;
+    background-image: url(https://th.bing.com/th/id/OIP.sMq_xoqMPHKm71UXHwlSpQAAAA?w=175&h=180&c=7&r=0&o=5&dpr=2&pid=1.7);
+    background-size:cover;
+    background-attachment:fixed;
+    background-position:center;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    border: solid;
+/*    background-image: url(https://th.bing.com/th/id/OIP.sMq_xoqMPHKm71UXHwlSpQAAAA?w=175&h=180&c=7&r=0&o=5&dpr=2&pid=1.7);
+    background-repeat: no-repeat;*/
+/*    background-attachment:fixed;
+    background-position:center;*/
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -14,6 +23,7 @@
 */
 .dl-horizontal dt {
     white-space: normal;
+ 
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
@@ -21,4 +31,5 @@ input,
 select,
 textarea {
     max-width: 280px;
+ 
 }

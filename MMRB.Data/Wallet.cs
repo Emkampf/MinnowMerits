@@ -13,34 +13,13 @@ namespace MMRB.Data
     {
         [Key]
         public int WalletId { get; set; }
-        public Guid ChildId { get; set; }
+/*        public Guid ChildId { get; set; }*/
 
         [Required]
         public string FirstName { get; set; }
-        /*        {
-                    get => _firstName;
-                    set
-                    {
-                        if (value.Length < 1 || value.Any(x => !char.IsLetter(x)))
-                            throw new FormatException("Must be atleast 4 characters long.");
-                        else
-                            _firstName = value;
-                    }
-                }*/
 
         [Required]
         public string LastName { get; set; }
-        /*        {
-                    get => _lastName;
-                    set
-                    {
-                        if (value.Length < 1 || value.Any(x => !char.IsLetter(x)))
-                            throw new FormatException("Must be atleast 4 characters long.");
-                        else
-                            _lastName = value;
-                    }
-                }*/
-
 
 
         [ForeignKey(nameof(Transaction))]
@@ -49,7 +28,12 @@ namespace MMRB.Data
         public List<Transaction> Transactions { get; set; } = new List<Transaction>();
 
         [DisplayName("Date Of Birth")]
-        public int BirthDay { get; set; }
+        public DateTime BirthDay { get; set; }
+
+        [ForeignKey(nameof(WriteUp))]
+        public int? WriteUpId { get; set; }
+
+        public virtual WriteUp WriteUp { get; set; }
 
     }
 }
