@@ -1,10 +1,11 @@
 ﻿@model IEnumerable<MMRB.Models.WriteUpListItem>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Write-Ups";
 }
 
-<h2>Index</h2>
+<h2>Welcome to Minnow Merits!</h2>
+<h3>Write-Ups</h3>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -18,10 +19,11 @@
         @TempData["SaveResult"]
     </div>
 }
-<table class="table">
+ <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.WriteUpId)
+
         </th>
         <th>
             @Html.DisplayNameFor(model => model.WriteUps)
@@ -39,9 +41,9 @@
                 @Html.DisplayFor(modelItem => item.WriteUps)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.WriteUpId }) |
-                @Html.ActionLink("Details", "Details", new { id=item.WriteUpId }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.WriteUpId })
+                @Html.ActionLink("Edit", "Edit", new { id = item.WriteUpId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.WriteUpId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.WriteUpId })
             </td>
         </tr>
     }

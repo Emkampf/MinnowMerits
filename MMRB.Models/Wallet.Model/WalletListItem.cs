@@ -18,6 +18,11 @@ namespace MMRB.Models
         public string LastName { get; set; }
 
         [Display(Name = "Birth Date")]
-        public int BirthDay { get; set; }
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime BirthDay { get; set; }
+
+        [Display(Name = "Write Ups")]
+        public int WriteUps { get; set; }
+
     }
 }

@@ -10,7 +10,8 @@ namespace MinnowMeritsRedBadge.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index", "Wallet");
+            /*            return View();*/
         }
 
         public ActionResult About()

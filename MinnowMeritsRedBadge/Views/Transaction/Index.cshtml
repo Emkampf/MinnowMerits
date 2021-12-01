@@ -1,10 +1,11 @@
-﻿@model       IEnumerable<MMRB.Models.TransactionListItem>
+﻿@model  IEnumerable<MMRB.Models.TransactionListItem>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Transactions";
 }
 
-<h2>Index</h2>
+<h2>Welcome to Minnow Merits!</h2>
+<h3>Transactions</h3>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -27,7 +28,7 @@
                 @Html.DisplayNameFor(model => model.ModifiedUtc)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.EventId)
+                @Html.DisplayNameFor(model => model.EventDescription)
             </th>
             <th></th>
         </tr>
@@ -42,7 +43,7 @@
                     @Html.DisplayFor(modelItem => item.ModifiedUtc)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.EventId)
+                    @Html.DisplayFor(modelItem => item.EventDescription  )
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new {  id=item.TransactionId }) |

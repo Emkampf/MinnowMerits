@@ -90,7 +90,9 @@ namespace MinnowMeritsRedBadge.Controllers
         }
 
         // GET: WriteUp/Delete/5
+
         [ActionName("Delete")]
+
         public ActionResult Delete(int id)
         {
             var svc = CreateWriteUpService();
@@ -113,7 +115,7 @@ namespace MinnowMeritsRedBadge.Controllers
             return RedirectToAction("Index");
         }
 
-        private static WriteUpService CreateWriteUpService()
+        public static WriteUpService CreateWriteUpService()
         {
             return new WriteUpService();
         }

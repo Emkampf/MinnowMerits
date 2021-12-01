@@ -16,9 +16,10 @@ namespace MMRB.Services
             var entity = new Transaction()
             {
                 TransactionId = model.TransactionId,
-                TypeTransaction = (TransactionType)model.TypeTransaction,
-                CreatedUtc = DateTimeOffset.Now
-
+/*                TypeTransaction = (TransactionType)model.TypeTransaction,*/
+                CreatedUtc = DateTimeOffset.UtcNow,
+                EventId = model.EventId,
+                WalletId = model.WalletId
             };
 
             using (var ctx = new ApplicationDbContext())
@@ -32,6 +33,21 @@ namespace MMRB.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
+                var eventsList =
+                    ctx
+                    .Events
+                    .Select(
+                        e =>
+                        new EventListItem
+                        {
+                            EventId = e.EventId,
+                            Title = e.Title,
+                            Description = e.Description,
+                            Price = e.Price,
+
+                        });
+                //var events = eventsList.ToArray();
+                
                 var query =
                     ctx
                     .Transactions
@@ -40,12 +56,16 @@ namespace MMRB.Services
                         new TransactionListItem
                         {
                             TransactionId = e.TransactionId,
-                            TypeTransaction = (TransactionType)e.TypeTransaction,
-                            CreatedUtc = e.CreatedUtc
-
-                        });
-                return query.ToArray();
-
+/*                            TypeTransaction = (TransactionType)e.TypeTransaction,*/
+                            CreatedUtc = e.CreatedUtc,
+                            EventId = e.EventId == null ? -1 : (int)e.EventId,
+                            WalletId = e.WalletId == null ? -1 : (int)e.WalletId
+                        }); 
+                var transactions = query.ToArray();
+                foreach (TransactionListItem tran in transactions) {
+                    tran.EventDescription = eventsList.Where(x => x.EventId == tran.EventId).Select(x => x.Description).FirstOrDefault();
+                }
+                return transactions;
             }
         }
 
@@ -60,8 +80,10 @@ namespace MMRB.Services
                     new TransactionDetail
                     {
                         TransactionId = entity.TransactionId,
-                        TypeTransaction = (TransactionType)entity.TypeTransaction,
-                        CreatedUtc = entity.CreatedUtc
+/*                        TypeTransaction = (TransactionType)entity.TypeTransaction,*/
+                        CreatedUtc = entity.CreatedUtc,
+                        EventId = entity.EventId == null ? -1 : (int)entity.EventId,
+                        WalletId = entity.WalletId == null ? -1 : (int)entity.WalletId,
                     };
             }
         }
@@ -75,7 +97,7 @@ namespace MMRB.Services
                         .Transactions
                         .Single(e => e.TransactionId == model.TransactionId);
 
-                entity.TypeTransaction = (TransactionType)model.TypeTransaction;
+/*                entity.TypeTransaction = (TransactionType)model.TypeTransaction;*/
                 entity.ModifiedUtc = DateTimeOffset.UtcNow;
 
                 return ctx.SaveChanges() == 1;

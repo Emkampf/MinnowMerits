@@ -17,14 +17,17 @@ namespace MMRB.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTimeOffset CreatedUtc { get; set; }
 
-        [Display(Name = "Modified")]
+        [Display(Name = "Date of Transaction")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTimeOffset? ModifiedUtc { get; set; }
 
-        [Display(Name = "Event Number")]
+        //[Display(Name = "Event Number")]
         public int EventId { get; set; }
-        public TransactionType TypeTransaction { get; set; }
+        [Display(Name = "Event Number")]
+        public string EventDescription { get; set; }
+/*        public TransactionType TypeTransaction { get; set; }*/
+        public int WalletId { get; set; }
 
     }
 }

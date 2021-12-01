@@ -12,5 +12,8 @@ namespace MMRB.Models
         public int WriteUpId { get; set; }
         [Display(Name = "How Many Write Ups")]
         public int WriteUps { get; set; }
+
+        [Display(Name = "Wallet")]
+        public int WalletId { get; set; }
     }
 }
