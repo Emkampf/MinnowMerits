@@ -46,8 +46,8 @@ namespace MMRB.Services
                             Price = e.Price,
 
                         });
-                //var events = eventsList.ToArray();
-                
+/*                var events = eventsList.ToArray();*/
+
                 var query =
                     ctx
                     .Transactions
