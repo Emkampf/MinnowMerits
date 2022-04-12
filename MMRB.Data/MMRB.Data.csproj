@@ -72,6 +72,10 @@
     <Compile Include="Migrations\202111232148267_Finshed Getting Views.Designer.cs">
       <DependentUpon>202111232148267_Finshed Getting Views.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202204121754496_Updating Branch.cs" />
+    <Compile Include="Migrations\202204121754496_Updating Branch.Designer.cs">
+      <DependentUpon>202204121754496_Updating Branch.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Transaction.cs" />
@@ -94,6 +98,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111232148267_Finshed Getting Views.resx">
       <DependentUpon>202111232148267_Finshed Getting Views.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204121754496_Updating Branch.resx">
+      <DependentUpon>202204121754496_Updating Branch.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
