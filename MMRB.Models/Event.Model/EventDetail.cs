@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MMRB.Models.Helper;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -15,6 +16,8 @@ namespace MMRB.Models
         public string Description { get; set; }
         [Display(Name = "Price")]
         public decimal Price { get; set; }
+        [Display(Name ="Transaction Type")]
+        public TransactionType TransactionType { get; set; }
 
     }
 }

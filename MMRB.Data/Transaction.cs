@@ -28,12 +28,12 @@ namespace MMRB.Data
 
         public virtual Event Event { get; set; }
 
-        public TransactionType TypeTransaction { get; set; }
+/*        public TransactionType TypeTransaction { get; set; }*/
 
-        /*        [ForeignKey(nameof(Wallet))]
-                public int FirstName { get; set; }
-                [ForeignKey(nameof(Wallet))]
-                public int LastName { get; set; }*/
+        [ForeignKey(nameof(Wallet))]
+        public int? WalletId { get; set; }
+
+        public virtual Wallet Wallet { get; set; }
 
 
     }

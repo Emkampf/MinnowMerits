@@ -13,7 +13,7 @@ namespace MMRB.Data
     {
         [Key]
         public int WalletId { get; set; }
-        public Guid ChildId { get; set; }
+/*        public Guid ChildId { get; set; }*/
 
         [Required]
         public string FirstName { get; set; }
@@ -27,7 +27,12 @@ namespace MMRB.Data
         public List<Transaction> Transactions { get; set; } = new List<Transaction>();
 
         [DisplayName("Date Of Birth")]
-        public int BirthDay { get; set; }
+        public DateTime BirthDay { get; set; }
+
+        [ForeignKey(nameof(WriteUp))]
+        public int? WriteUpId { get; set; }
+
+        public virtual WriteUp WriteUp { get; set; }
 
     }
 }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MMRB.Models.Helper;
 
 namespace MinnowMeritsRedBadge.Controllers
 {
@@ -24,6 +25,8 @@ namespace MinnowMeritsRedBadge.Controllers
         // GET: Event/Create
         public ActionResult Create()
         {
+            ViewData["TransactionTypeOptions"] = Enum.GetValues(typeof(TransactionType));
+
             return View();
         }
 
@@ -95,7 +98,10 @@ namespace MinnowMeritsRedBadge.Controllers
         }
 
         // GET: Event/Delete/5
+
+
         [ActionName("Delete")]
+
         public ActionResult Delete(int id)
         {
             var svc = CreateEventService();
@@ -108,7 +114,11 @@ namespace MinnowMeritsRedBadge.Controllers
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
+
+        public ActionResult DeleteEvent(int id)
+
         public ActionResult DeletePost(int id)
+
         {
             var service = CreateEventService();
 
@@ -119,7 +129,7 @@ namespace MinnowMeritsRedBadge.Controllers
             return RedirectToAction("Index");
         }
 
-        private static EventService CreateEventService()
+        public static EventService CreateEventService()
         {
             return new EventService();
         }

@@ -8,8 +8,8 @@ namespace MMRB.Models
 {
     public class WalletCreate
     {
-        [Display(Name = "Wallet Number")]
-        public int WalletId { get; set; }
+/*        [Display(Name = "Wallet Number")]
+        public int WalletId { get; set; }*/
 
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
@@ -18,6 +18,7 @@ namespace MMRB.Models
         public string LastName { get; set; }
 
         [Display(Name = "Birthday")]
-        public int BirthDay { get; set; }
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime BirthDay { get; set; }
     }
 }
