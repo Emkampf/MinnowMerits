@@ -98,6 +98,10 @@
     <Compile Include="Migrations\202111292012322_Transactin Type.designer.cs">
       <DependentUpon>202111292012322_Transactin Type.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202204121925482_Config changed from secrets.cnfig.cs" />
+    <Compile Include="Migrations\202204121925482_Config changed from secrets.cnfig.Designer.cs">
+      <DependentUpon>202204121925482_Config changed from secrets.cnfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Transaction.cs" />
@@ -138,6 +142,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111292012322_Transactin Type.resx">
       <DependentUpon>202111292012322_Transactin Type.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204121925482_Config changed from secrets.cnfig.resx">
+      <DependentUpon>202204121925482_Config changed from secrets.cnfig.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
