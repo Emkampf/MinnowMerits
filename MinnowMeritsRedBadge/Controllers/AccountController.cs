@@ -83,8 +83,8 @@ namespace MinnowMeritsRedBadge.Controllers
                 case SignInStatus.Success:
                     return RedirectToAction("Index", "Wallet");
 
-                case SignInStatus.Success: 
-                    return RedirectToLocal(returnUrl);
+/*                case SignInStatus.Success: 
+                    return RedirectToLocal(returnUrl);*/
 
                 case SignInStatus.LockedOut:
                     return View("Lockout");

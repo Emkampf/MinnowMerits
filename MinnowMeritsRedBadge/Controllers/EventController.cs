@@ -117,6 +117,16 @@ namespace MinnowMeritsRedBadge.Controllers
 
         public ActionResult DeleteEvent(int id)
 
+        {
+            var service = CreateEventService();
+
+            service.DeleteEvent(id);
+
+            TempData["SaveResult"] = "Your event was deleted";
+
+            return RedirectToAction("Index");
+        }
+
         public ActionResult DeletePost(int id)
 
         {

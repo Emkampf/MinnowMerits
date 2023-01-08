@@ -105,14 +105,16 @@ namespace MinnowMeritsRedBadge.Controllers
 
         // GET: Transaction/Delete/5
 
-        public ActionResult Delete(int id)
+/*        public ActionResult Delete(int id)
+ *        come back too!
+*/
 
         [ActionName("Delete")]
         public ActionResult Delete(int transactionId)
 
         {
             var svc = CreateTransactionService();
-            var model = svc.GetTransactionById(id);
+            var model = svc.GetTransactionById(transactionId);
 
             return View(model);
         }
@@ -122,7 +124,7 @@ namespace MinnowMeritsRedBadge.Controllers
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
 
-        public ActionResult DeleteTransaction(int id)
+  /*      public ActionResult DeleteTransaction(int id)*/
 
         public ActionResult DeletePost(int id)
 
