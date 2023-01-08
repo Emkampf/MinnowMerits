@@ -47,7 +47,7 @@ namespace MinnowMeritsRedBadge
             app.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
 
             /* Uncomment the following lines to enable logging in with third party login providers*/
-            app.UseMicrosoftAccountAuthentication(
+           /* app.UseMicrosoftAccountAuthentication(
                 clientId: "",
                 clientSecret: "");
 
@@ -63,7 +63,7 @@ namespace MinnowMeritsRedBadge
             {
               ClientId = "",
                 ClientSecret = ""
-            });
+            });*/
         }
     }
 }
