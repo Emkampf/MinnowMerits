@@ -17,7 +17,8 @@
 @*</body>*@
 <h1>Wallets</h1>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", "Wallet" , null,  new { Id = "createWallet" })
+
 </p>
 
 @if (TempData.ContainsKey("SaveResult"))
